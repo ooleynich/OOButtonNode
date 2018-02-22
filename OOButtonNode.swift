@@ -137,7 +137,7 @@ fileprivate extension OOButtonNode {
     }
     
     func updateImage() {
-        if let image = images[state] {
+        if let image = images[state] ?? images[.normal] {
             backgroundNode = SKSpriteNode(texture: SKTexture(image: image))
             addChild(backgroundNode!)
             
