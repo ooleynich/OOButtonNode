@@ -47,8 +47,11 @@ class GameScene: SKScene {
         fourthButton.size = CGSize(width: 200.0, height: 65.0)
         fourthButton.setBackgroundColor(.yellow, for: .normal)
         fourthButton.highlightScale = 0.9
-        fourthButton.pressedBlock = {
-            NSLog("fourthButton pressed")
+        fourthButton.pressedBlock = { [weak self] in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.fifthButton.enabled = !strongSelf.fifthButton.enabled
         }
         
         fifthButton = childNode(withName: "fifthButton") as! OOButtonNode
@@ -58,6 +61,7 @@ class GameScene: SKScene {
         fifthButton.size = CGSize(width: 200.0, height: 65.0)
         fifthButton.setBackgroundColor(.yellow, for: .normal)
         fifthButton.setBackgroundColor(.red, for: .highlighted)
+        fifthButton.setBackgroundColor(.lightGray, for: .disabled)
         fifthButton.pressedBlock = {
             NSLog("fifthButton pressed")
         }

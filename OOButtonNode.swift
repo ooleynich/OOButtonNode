@@ -45,6 +45,12 @@ final class OOButtonNode: SKNode {
     
     var pressedBlock: (() -> Void)?
     
+    var enabled = true {
+        didSet {
+            enabledChanged()
+        }
+    }
+    
     //MARK: Private Properties
     fileprivate var state = OOButtonState.normal {
         didSet {
@@ -104,10 +110,18 @@ final class OOButtonNode: SKNode {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if state == .disabled {
+            return
+        }
+        
         state = .highlighted
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if state == .disabled {
+            return
+        }
+        
         if let touch = touches.first {
             let location = touch.location(in: parent!)
             if self.contains(location) {
@@ -156,5 +170,10 @@ fileprivate extension OOButtonNode {
         let newScale = state == .highlighted ? highlightScale : 1.0
         backgroundNode?.xScale = newScale
         backgroundNode?.yScale = newScale
+    }
+    
+    func enabledChanged() {
+        isUserInteractionEnabled = enabled
+        state = enabled ? .normal : .disabled
     }
 }

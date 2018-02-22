@@ -60,11 +60,11 @@
 		7C36671F203EB3510079283A /* ButtonDemo */ = {
 			isa = PBXGroup;
 			children = (
-				7C366720203EB3510079283A /* AppDelegate.swift */,
 				7C366738203EB54D0079283A /* OOButtonNode */,
+				7C366720203EB3510079283A /* AppDelegate.swift */,
+				7C366728203EB3510079283A /* GameViewController.swift */,
 				7C366726203EB3510079283A /* GameScene.swift */,
 				7C366722203EB3510079283A /* GameScene.sks */,
-				7C366728203EB3510079283A /* GameViewController.swift */,
 				7C3BA5D4203EEEA200BF850F /* Supporting Files */,
 			);
 			path = ButtonDemo;
