@@ -21,7 +21,6 @@ enum OOButtonState {
             return UIColor.white
         case .disabled:
             return UIColor.gray
-        
         }
     }
 }
@@ -58,13 +57,17 @@ final class OOButtonNode: SKNode {
     }
     
     func setBackgroundColor(_ backgroundColor: UIColor, for state: OOButtonState) {
-        backgroundColors[state] = backgroundColor
-        updateLabel()
+        let node = SKSpriteNode(color: backgroundColor, size:  size)
+        node.zPosition = -100.0
+        backgrounds[state] = node
+        updateBackground()
     }
     
     func setImage(_ image: UIImage, for state: OOButtonState) {
-        images[state] = image
-        updateImage()
+        let node = SKSpriteNode(texture: SKTexture(image: image))
+        node.zPosition = -100.0
+        backgrounds[state] = node
+        updateBackground()
     }
     
     //MARK: Private Properties
@@ -76,8 +79,7 @@ final class OOButtonNode: SKNode {
     
     fileprivate var titles = [OOButtonState: String]()
     fileprivate var titleColors = [OOButtonState: UIColor]()
-    fileprivate var backgroundColors = [OOButtonState: UIColor]()
-    fileprivate var images = [OOButtonState: UIImage]()
+    fileprivate var backgrounds = [OOButtonState: SKSpriteNode]()
     
     fileprivate let label = SKLabelNode()
     fileprivate var backgroundNode: SKSpriteNode? {
@@ -128,7 +130,7 @@ fileprivate extension OOButtonNode {
     
     func stateChanged() {
         updateLabel()
-        updateImage()
+        updateBackground()
     }
     
     func updateLabel() {
@@ -136,25 +138,23 @@ fileprivate extension OOButtonNode {
         label.fontColor = titleColors[state] ?? state.defaultTextColor()
     }
     
-    func updateImage() {
-        if let image = images[state] ?? images[.normal] {
-            backgroundNode = SKSpriteNode(texture: SKTexture(image: image))
+    func updateBackground() {
+        if let background = backgrounds[state], background != backgroundNode {
+            backgroundNode = background
             addChild(backgroundNode!)
-            
-            let newScale = state == .highlighted ? highlightScale : 1.0
-            backgroundNode?.xScale = newScale
-            backgroundNode?.yScale = newScale
-        } else if let backgroundColor = backgroundColors[state] {
-            let bn = SKSpriteNode(color: backgroundColor, size:  size)
-            bn.zPosition = -100.0
-            addChild(bn)
-            backgroundNode = bn
+            changeScale()
+        } else if backgrounds[.normal] != nil {
+            changeScale()
         }
     }
     
     func resizeBackground() {
-        if let bn = backgroundNode {
-            bn.size = size
-        }
+        backgrounds.values.forEach { $0.size = size }
+    }
+    
+    func changeScale() {
+        let newScale = state == .highlighted ? highlightScale : 1.0
+        backgroundNode?.xScale = newScale
+        backgroundNode?.yScale = newScale
     }
 }
