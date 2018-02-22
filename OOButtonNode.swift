@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-enum ButtonState {
+enum OOButtonState {
     case normal
     case highlighted
     case disabled
@@ -24,65 +24,69 @@ enum ButtonState {
         
         }
     }
-    
-    func scale() -> CGFloat {
-        switch self {
-        case .normal, .disabled:
-            return 1.0
-        case .highlighted:
-            return 0.9
-        }
-    }
 }
 
 final class OOButtonNode: SKNode {
     
     //MARK: Internal Properties
-    var title = "" {
+    var size = CGSize.zero {
         didSet {
-            label.text = title
+            resizeBackground()
         }
     }
     
-    var imageNamed = "" {
+    var font = UIFont.systemFont(ofSize: 10.0) {
         didSet {
-            if let i = backgroundNode {
-                i.removeFromParent()
-            }
-            
-            backgroundNode = SKSpriteNode(imageNamed: imageNamed)
-            addChild(backgroundNode!)
+            label.fontName = font.fontName
+            label.fontSize = font.pointSize
         }
     }
     
-    var backgroundNode: SKSpriteNode? {
+    var highlightScale: CGFloat = 1.0
+    
+    var pressedBlock: (() -> Void)?
+    
+    //MARK: Internal Methods
+    func setTitle(_ title: String, for state: OOButtonState) {
+        titles[state] = title
+        updateLabel()
+    }
+    
+    func setTitleColor(_ titleColor: UIColor, for state: OOButtonState) {
+        titleColors[state] = titleColor
+        updateLabel()
+    }
+    
+    func setBackgroundColor(_ backgroundColor: UIColor, for state: OOButtonState) {
+        backgroundColors[state] = backgroundColor
+        updateLabel()
+    }
+    
+    func setImage(_ image: UIImage, for state: OOButtonState) {
+        images[state] = image
+        updateImage()
+    }
+    
+    //MARK: Private Properties
+    fileprivate var state = OOButtonState.normal {
+        didSet {
+            stateChanged()
+        }
+    }
+    
+    fileprivate var titles = [OOButtonState: String]()
+    fileprivate var titleColors = [OOButtonState: UIColor]()
+    fileprivate var backgroundColors = [OOButtonState: UIColor]()
+    fileprivate var images = [OOButtonState: UIImage]()
+    
+    fileprivate let label = SKLabelNode()
+    fileprivate var backgroundNode: SKSpriteNode? {
         didSet {
             if let oldBG = oldValue {
                 oldBG.removeFromParent()
             }
         }
     }
-    
-    var fontSize: CGFloat = 10.0 {
-        didSet {
-            label.fontSize = fontSize
-        }
-    }
-    
-    var state: ButtonState! {
-        didSet {
-            label.fontColor = state.defaultTextColor()
-            if let i = backgroundNode {
-                i.xScale = state.scale()
-                i.yScale = state.scale()
-            }
-        }
-    }
-    
-    var pressedBlock: (() -> Void)?
-    
-    //MARK: Private Properties
-    fileprivate let label = SKLabelNode()
     
     //MARK: Lifecycle
     override init() {
@@ -120,5 +124,37 @@ fileprivate extension OOButtonNode {
         label.verticalAlignmentMode = .center
         addChild(label)
         state = .normal
+    }
+    
+    func stateChanged() {
+        updateLabel()
+        updateImage()
+    }
+    
+    func updateLabel() {
+        label.text = titles[state] ?? titles[.normal] ?? ""
+        label.fontColor = titleColors[state] ?? state.defaultTextColor()
+    }
+    
+    func updateImage() {
+        if let image = images[state] {
+            backgroundNode = SKSpriteNode(texture: SKTexture(image: image))
+            addChild(backgroundNode!)
+            
+            let newScale = state == .highlighted ? highlightScale : 1.0
+            backgroundNode?.xScale = newScale
+            backgroundNode?.yScale = newScale
+        } else if let backgroundColor = backgroundColors[state] {
+            let bn = SKSpriteNode(color: backgroundColor, size:  size)
+            bn.zPosition = -100.0
+            addChild(bn)
+            backgroundNode = bn
+        }
+    }
+    
+    func resizeBackground() {
+        if let bn = backgroundNode {
+            bn.size = size
+        }
     }
 }

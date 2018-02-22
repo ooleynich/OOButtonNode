@@ -14,7 +14,7 @@
 		7C36672C203EB3510079283A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C36672A203EB3510079283A /* Main.storyboard */; };
 		7C36672E203EB3510079283A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C36672D203EB3510079283A /* Assets.xcassets */; };
 		7C366731203EB3510079283A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C36672F203EB3510079283A /* LaunchScreen.storyboard */; };
-		7C36673A203EB5630079283A /* OOButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C366739203EB5630079283A /* OOButtonNode.swift */; };
+		7C36673C203ED1EC0079283A /* OOButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C36673B203ED1EC0079283A /* OOButtonNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +27,7 @@
 		7C36672D203EB3510079283A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C366730203EB3510079283A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7C366732203EB3510079283A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7C366739203EB5630079283A /* OOButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OOButtonNode.swift; path = ../../../OOButtonNode.swift; sourceTree = "<group>"; };
+		7C36673B203ED1EC0079283A /* OOButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OOButtonNode.swift; path = ../../OOButtonNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,9 +76,9 @@
 		7C366738203EB54D0079283A /* OOButtonNode */ = {
 			isa = PBXGroup;
 			children = (
-				7C366739203EB5630079283A /* OOButtonNode.swift */,
+				7C36673B203ED1EC0079283A /* OOButtonNode.swift */,
 			);
-			path = OOButtonNode;
+			name = OOButtonNode;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,7 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C366727203EB3510079283A /* GameScene.swift in Sources */,
-				7C36673A203EB5630079283A /* OOButtonNode.swift in Sources */,
+				7C36673C203ED1EC0079283A /* OOButtonNode.swift in Sources */,
 				7C366729203EB3510079283A /* GameViewController.swift in Sources */,
 				7C366721203EB3510079283A /* AppDelegate.swift in Sources */,
 			);
