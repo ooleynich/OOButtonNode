@@ -45,6 +45,26 @@ final class OOButtonNode: SKNode {
     
     var pressedBlock: (() -> Void)?
     
+    //MARK: Private Properties
+    fileprivate var state = OOButtonState.normal {
+        didSet {
+            stateChanged()
+        }
+    }
+    
+    fileprivate var titles = [OOButtonState: String]()
+    fileprivate var titleColors = [OOButtonState: UIColor]()
+    fileprivate var backgrounds = [OOButtonState: SKSpriteNode]()
+    
+    fileprivate let label = SKLabelNode()
+    fileprivate var backgroundNode: SKSpriteNode? {
+        didSet {
+            if let oldBG = oldValue {
+                oldBG.removeFromParent()
+            }
+        }
+    }
+    
     //MARK: Internal Methods
     func setTitle(_ title: String, for state: OOButtonState) {
         titles[state] = title
@@ -68,26 +88,6 @@ final class OOButtonNode: SKNode {
         node.zPosition = -100.0
         backgrounds[state] = node
         updateBackground()
-    }
-    
-    //MARK: Private Properties
-    fileprivate var state = OOButtonState.normal {
-        didSet {
-            stateChanged()
-        }
-    }
-    
-    fileprivate var titles = [OOButtonState: String]()
-    fileprivate var titleColors = [OOButtonState: UIColor]()
-    fileprivate var backgrounds = [OOButtonState: SKSpriteNode]()
-    
-    fileprivate let label = SKLabelNode()
-    fileprivate var backgroundNode: SKSpriteNode? {
-        didSet {
-            if let oldBG = oldValue {
-                oldBG.removeFromParent()
-            }
-        }
     }
     
     //MARK: Lifecycle
