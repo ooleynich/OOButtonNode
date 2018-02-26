@@ -10,7 +10,7 @@
 
 ## Requirements
 
-`OOButtonNode` works on iOS 8+ and requires ARC to build. It depends only on adding SpriteKit.
+`OOButtonNode` is Swift 4 library, works on iOS 8+ and requires ARC to build.
 
 ## Adding OOButtonNode to your project
 

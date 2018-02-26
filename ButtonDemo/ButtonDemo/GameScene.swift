@@ -6,7 +6,6 @@
 //  Copyright © 2018 Oleg. All rights reserved.
 //
 
-import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
