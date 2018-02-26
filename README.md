@@ -1,14 +1,16 @@
 # OOButtonNode
 
-[![CocoaPods compatible](https://img.shields.io/cocoapods/v/MBProgressHUD.svg?style=flat)]() [![License: MIT](https://img.shields.io/cocoapods/l/MBProgressHUD.svg?style=flat)](http://opensource.org/licenses/MIT) 
+![platform ios](http://b.repl.ca/v1/platform-ios-lightgrey.png) ![Swift 4.0](http://b.repl.ca/v1/Swift-4.0-blue.png) [![CocoaPods compatible](http://b.repl.ca/v1/pod-1.4.0-blue.png)]() [![License: MIT](http://b.repl.ca/v1/License-MIT-lightgrey.png)](LICENSE) 
 [![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/ooleinich)
 
 
-`OOButtonNode` custom button class for SpriteKit. It has almost all usefull logic from UIButton.
+`OOButtonNode` custom button class for SpriteKit. It has almost all useful logic from UIButton.
+
+![Alt Text](https://user-images.githubusercontent.com/9960447/36678749-a2270014-1b22-11e8-96a9-0f4aba84bcf1.gif)
 
 ## Requirements
 
-`OOButtonNode` works on iOS 8+ and requires ARC to build. It depends only in adding SpriteKit.
+`OOButtonNode` works on iOS 8+ and requires ARC to build. It depends only on adding SpriteKit.
 
 ## Adding OOButtonNode to your project
 
@@ -16,9 +18,9 @@
 
 [CocoaPods](http://cocoapods.org) is the recommended way to add OOButtonNode to your project.
 
-1. Add a pod entry for MBProgressHUD to your Podfile `pod 'OOButtonNode'
+1. Add a pod entry for OOButtonNode to your Podfile `pod 'OOButtonNode'
 2. Install the pod(s) by running `pod install`.
-3. Include MBProgressHUD wherever you need it with `import OOButtonNode`.
+3. Include OOButtonNode wherever you need it with `import OOButtonNode`.
 
 ### Source files
 
@@ -65,7 +67,7 @@ Moreover You can add scale effect to the pressed state:
 firstButton.pressedScale = 0.9
 ```
 
-Additionaly You can change font and button size(specially for background color using)
+Additionally You can change font and button size(specially for background color using)
 
 All this logic is in example project.
 
