@@ -10,14 +10,14 @@ import SpriteKit
 
 enum OOButtonState {
     case normal
-    case highlighted
+    case pressed
     case disabled
     
     func defaultTextColor() -> UIColor {
         switch self {
         case .normal:
             return UIColor.blue
-        case .highlighted:
+        case .pressed:
             return UIColor.white
         case .disabled:
             return UIColor.gray
@@ -41,7 +41,7 @@ final class OOButtonNode: SKNode {
         }
     }
     
-    var highlightScale: CGFloat = 1.0
+    var pressedScale: CGFloat = 1.0
     
     var pressedBlock: ((OOButtonNode) -> Void)?
     
@@ -110,7 +110,7 @@ final class OOButtonNode: SKNode {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        state = .highlighted
+        state = .pressed
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -159,7 +159,7 @@ fileprivate extension OOButtonNode {
     }
     
     func changeScale() {
-        let newScale = state == .highlighted ? highlightScale : 1.0
+        let newScale = state == .pressed ? pressedScale : 1.0
         backgroundNode?.xScale = newScale
         backgroundNode?.yScale = newScale
     }

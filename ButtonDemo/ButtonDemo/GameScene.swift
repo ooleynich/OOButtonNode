@@ -27,14 +27,14 @@ class GameScene: SKScene {
         
         secondButton = childNode(withName: "secondButton") as! OOButtonNode
         secondButton.setImage(UIImage(named: "hello")!, for: .normal)
-        secondButton.setImage(UIImage(named: "hello_pressed")!, for: .highlighted)
+        secondButton.setImage(UIImage(named: "hello_pressed")!, for: .pressed)
         secondButton.pressedBlock = { (buttonNode) in
             NSLog("secondButton pressed")
         }
         
         thirdButton = childNode(withName: "thirdButton") as! OOButtonNode
         thirdButton.setImage(UIImage(named: "hello")!, for: .normal)
-        thirdButton.highlightScale = 0.9
+        thirdButton.pressedScale = 0.9
         thirdButton.pressedBlock = { (buttonNode) in
             NSLog("thirdButton pressed")
         }
@@ -42,11 +42,11 @@ class GameScene: SKScene {
         fourthButton = childNode(withName: "fourthButton") as! OOButtonNode
         fourthButton.setTitle("Hello", for: .normal)
         fourthButton.setTitleColor(.black, for: .normal)
-        fourthButton.setTitleColor(.blue, for: .highlighted)
+        fourthButton.setTitleColor(.blue, for: .pressed)
         fourthButton.font = UIFont.boldSystemFont(ofSize: 40.0)
         fourthButton.size = CGSize(width: 200.0, height: 65.0)
         fourthButton.setBackgroundColor(.yellow, for: .normal)
-        fourthButton.highlightScale = 0.9
+        fourthButton.pressedScale = 0.9
         fourthButton.pressedBlock = { [weak self] (buttonNode) in
             guard let strongSelf = self else {
                 return
@@ -60,7 +60,7 @@ class GameScene: SKScene {
         fifthButton.font = UIFont.boldSystemFont(ofSize: 40.0)
         fifthButton.size = CGSize(width: 200.0, height: 65.0)
         fifthButton.setBackgroundColor(.yellow, for: .normal)
-        fifthButton.setBackgroundColor(.red, for: .highlighted)
+        fifthButton.setBackgroundColor(.red, for: .pressed)
         fifthButton.setBackgroundColor(.lightGray, for: .disabled)
         fifthButton.pressedBlock = { (buttonNode) in
             NSLog("fifthButton pressed")
