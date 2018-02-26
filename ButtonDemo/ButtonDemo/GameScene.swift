@@ -39,7 +39,9 @@ class GameScene: SKScene {
             NSLog("thirdButton pressed")
         }
         
-        fourthButton = childNode(withName: "fourthButton") as! OOButtonNode
+        //create programmatically
+        fourthButton = OOButtonNode()
+        addChild(fourthButton)
         fourthButton.setTitle("Hello", for: .normal)
         fourthButton.setTitleColor(.black, for: .normal)
         fourthButton.setTitleColor(.blue, for: .pressed)
