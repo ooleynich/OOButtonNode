@@ -110,18 +110,10 @@ final class OOButtonNode: SKNode {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if state == .disabled {
-            return
-        }
-        
         state = .highlighted
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if state == .disabled {
-            return
-        }
-        
         if let touch = touches.first {
             let location = touch.location(in: parent!)
             if self.contains(location) {
