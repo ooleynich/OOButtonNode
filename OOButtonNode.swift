@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-enum OOButtonState {
+public enum OOButtonState {
     case normal
     case pressed
     case disabled
@@ -25,27 +25,27 @@ enum OOButtonState {
     }
 }
 
-final class OOButtonNode: SKNode {
+final public class OOButtonNode: SKNode {
     
-    //MARK: Internal Properties
-    var size = CGSize.zero {
+    //MARK: Public Properties
+    public var size = CGSize.zero {
         didSet {
             resizeBackground()
         }
     }
     
-    var font = UIFont.systemFont(ofSize: 10.0) {
+    public var font = UIFont.systemFont(ofSize: 10.0) {
         didSet {
             label.fontName = font.fontName
             label.fontSize = font.pointSize
         }
     }
     
-    var pressedScale: CGFloat = 1.0
+    public var pressedScale: CGFloat = 1.0
     
-    var pressedBlock: ((OOButtonNode) -> Void)?
+    public var pressedBlock: ((OOButtonNode) -> Void)?
     
-    var enabled = true {
+    public var enabled = true {
         didSet {
             enabledChanged()
         }
@@ -71,25 +71,25 @@ final class OOButtonNode: SKNode {
         }
     }
     
-    //MARK: Internal Methods
-    func setTitle(_ title: String, for state: OOButtonState) {
+    //MARK: Public Methods
+    public func setTitle(_ title: String, for state: OOButtonState) {
         titles[state] = title
         updateLabel()
     }
     
-    func setTitleColor(_ titleColor: UIColor, for state: OOButtonState) {
+    public func setTitleColor(_ titleColor: UIColor, for state: OOButtonState) {
         titleColors[state] = titleColor
         updateLabel()
     }
     
-    func setBackgroundColor(_ backgroundColor: UIColor, for state: OOButtonState) {
+    public func setBackgroundColor(_ backgroundColor: UIColor, for state: OOButtonState) {
         let node = SKSpriteNode(color: backgroundColor, size:  size)
         node.zPosition = -100.0
         backgrounds[state] = node
         updateBackground()
     }
     
-    func setImage(_ image: UIImage, for state: OOButtonState) {
+    public func setImage(_ image: UIImage, for state: OOButtonState) {
         let node = SKSpriteNode(texture: SKTexture(image: image))
         node.zPosition = -100.0
         backgrounds[state] = node
@@ -97,23 +97,23 @@ final class OOButtonNode: SKNode {
     }
     
     //MARK: Lifecycle
-    override init() {
+    public override init() {
         super.init()
         
         setupUI()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         setupUI()
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         state = .pressed
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
             let location = touch.location(in: parent!)
             if self.contains(location) {
