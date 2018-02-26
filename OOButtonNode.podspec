@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "OOButtonNode"
-  s.version      = "0.1"
+  s.version      = "0.2"
   s.summary      = "Custom button class for SpriteKit."
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.homepage     = "https://github.com/ooleynich"
