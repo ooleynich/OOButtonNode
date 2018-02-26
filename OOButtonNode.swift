@@ -43,7 +43,7 @@ final class OOButtonNode: SKNode {
     
     var highlightScale: CGFloat = 1.0
     
-    var pressedBlock: (() -> Void)?
+    var pressedBlock: ((OOButtonNode) -> Void)?
     
     var enabled = true {
         didSet {
@@ -125,7 +125,7 @@ final class OOButtonNode: SKNode {
         if let touch = touches.first {
             let location = touch.location(in: parent!)
             if self.contains(location) {
-                pressedBlock?()
+                pressedBlock?(self)
             }
         }
         
